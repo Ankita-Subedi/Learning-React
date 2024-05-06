@@ -20,10 +20,10 @@ let handleOnChange = (event) =>{
     const [text, setText] = useState('Enter text here...');
   return (
     <>
-    <div className='container'>
+    <div className='container' style={{color : props.mode==='dark'?'white':'black'}}>
         <h1>{props.heading}</h1>
 <div className="mb-3">
-  <textarea className="form-control" id="myBox" rows="8" value={text} onChange={handleOnChange}></textarea>
+  <textarea className="form-control" style={{backgroundColor : props.mode==='dark'?'grey':'white',color : props.mode==='dark'?'white':'black'}} id="myBox" rows="8" value={text} onChange={handleOnChange}></textarea>
 </div>
 <div className="btn btn-primary mx-1" onClick={handleUpClick}>Convert To UpperCase</div>
 <div className="btn btn-primary mx-1" onClick={handleLoClick}>Convert To LowerCase</div>
