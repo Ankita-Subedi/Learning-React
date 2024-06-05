@@ -22,18 +22,20 @@ function App() {
       setMode("dark");
       setBtnTxt("Disable Dark Mode");
       document.body.style.backgroundColor = '#042743';
+      showAlert("Dark mode enabled", "Success");
     }
     else{
       setMode("light")
       setBtnTxt("Enable Dark Mode")
       document.body.style.backgroundColor = 'white';
+      showAlert("Light mode enabled", "Success");
     }
   };
 
   return (
     <>
     <Navbar  forLogo = "LOGO" mode = {mode} toggleMode={toggleMode} btnTxt={btnTxt}/>
-    <Alert alert="This is Alert" />
+    <Alert alert={alert} />
       <div className='container my-3'>
       <TextBox  heading="Heading goes here" mode={mode}/>
       {/* <About/> */}
