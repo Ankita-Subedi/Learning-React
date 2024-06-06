@@ -2,15 +2,15 @@ import React, { useState } from "react";
 
 export default function TextBox(props) {
   let handleUpClick = () => {
-    console.log("Button was clicked");
     let newText = text.toUpperCase();
     setText(newText);
+    props.showAlert("Text has been converted to upper case", "sucess");
   };
 
   let handleLoClick = () => {
-    console.log("Button was clicked");
     let newText = text.toLowerCase();
     setText(newText);
+    props.showAlert("Text has been converted to lower case", "sucess");
   };
 
   let handleOnChange = (event) => {
