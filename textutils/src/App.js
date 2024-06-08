@@ -27,18 +27,20 @@ function App() {
       setBtnTxt("Disable Dark Mode");
       document.body.style.backgroundColor = '#042743';
       showAlert("Dark mode enabled", "success");
+      document.title = 'TextUtils-Dark Mode';
     }
     else{
       setMode("light")
       setBtnTxt("Enable Dark Mode")
       document.body.style.backgroundColor = 'white';
       showAlert("Light mode enabled", "success");
+      document.title = 'TextUtils-Dark Mode';
     }
   };
 
   return (
     <>
-    <Navbar  forLogo = "LOGO" mode = {mode} toggleMode={toggleMode} btnTxt={btnTxt}/>
+    <Navbar  forLogo = "TextUtils" mode = {mode} toggleMode={toggleMode} btnTxt={btnTxt}/>
     <Alert alert={alert} />
       <div className='container my-3'>
       <TextBox  heading="Heading goes here" mode={mode} showAlert={showAlert}/>
