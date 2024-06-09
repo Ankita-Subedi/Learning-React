@@ -2,8 +2,16 @@ import './App.css';
 import Alert from './components/Alert';
 import Navbar from './components/Navbar';
 import TextBox from './components/TextBox';
-//import About from './components/About';
+import About from './components/About';
 import React, {useState} from 'react';
+// import { Router } from 'react-router-dom';
+// import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
+
 
 function App() {
   const [mode, setMode] = useState('light');
@@ -40,12 +48,41 @@ function App() {
 
   return (
     <>
-    <Navbar  forLogo = "TextUtils" mode = {mode} toggleMode={toggleMode} btnTxt={btnTxt}/>
-    <Alert alert={alert} />
-      <div className='container my-3'>
-      <TextBox  heading="Heading goes here" mode={mode} showAlert={showAlert}/>
-      {/* <About/> */}
+      {/* <BrowserRouter>
+        <Navbar
+          title="TextUtils2"
+          aboutText="TextAbouts"
+          mode={mode}
+          toggleMode={toggleMode}
+        />
+        <Alert alert={alert} />
+        <div className="container my-4" mode={mode}>
+          <Routes>
+            <Route exact path="/about" element={<About />}></Route>
+            <Route
+              exact path="/"
+              element={
+                <Textbox
+                  showAlert={showAlert}
+                  heading="Enter Text to analyze "
+                  mode={mode}
+                />
+              }
+            ></Route>
+          </Routes>
+        </div>
+      </BrowserRouter> */}
+
+<Router>
+      <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} />
+      <Alert alert={alert} />
+      <div className="container my-3">
+        <Routes>
+          <Route path="/about" element={<About />} />
+          <Route path="/" element={<TextBox showAlert={showAlert} heading="Enter text to analyze below" mode={mode} />} />
+        </Routes>
       </div>
+    </Router>
     </>
   );
 }
