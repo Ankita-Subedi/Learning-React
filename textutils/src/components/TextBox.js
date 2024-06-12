@@ -60,7 +60,9 @@ export default function TextBox(props) {
           {/* {text.split(" ").length} words and {text.length} characters */}
           {countWords(text)} words and {text.length} characters
         </p>
-        <p>{0.008 * text.split(" ").length} Minutes Read</p>
+        {/* <p>{0.008 * text.split(" ").length} Minutes Read</p> */}
+        <p>{0.008 * countWords()} Minutes Read</p>
+        <p>{countWords()} Words</p>
         <h2>Preview</h2>
         <p>{text.length > 0 ? text : "Enter some text to preview it here"}</p>
       </div>
