@@ -43,10 +43,10 @@ export default function TextBox(props) {
             onChange={handleOnChange}
           ></textarea>
         </div>
-        <div className="btn btn-primary mx-1" onClick={handleUpClick}>
+        <div className="btn btn-primary mx-1 my-1" onClick={handleUpClick}>
           Convert To UpperCase
         </div>
-        <div className="btn btn-primary mx-1" onClick={handleLoClick}>
+        <div className="btn btn-primary mx-1 my-1" onClick={handleLoClick}>
           Convert To LowerCase
         </div>
       </div>
