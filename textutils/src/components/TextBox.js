@@ -28,7 +28,7 @@ export default function TextBox(props) {
         className="container"
         style={{ color: props.mode === "dark" ? "white" : "black" }}
       >
-        <h1>{props.heading}</h1>
+        <h1 mb-3>{props.heading}</h1>
         <div className="mb-3">
           {console.log(props.mode)}
           <textarea
@@ -43,12 +43,12 @@ export default function TextBox(props) {
             onChange={handleOnChange}
           ></textarea>
         </div>
-        <div className="btn btn-primary mx-1 my-1" onClick={handleUpClick}>
+        <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleUpClick}>
           Convert To UpperCase
-        </div>
-        <div className="btn btn-primary mx-1 my-1" onClick={handleLoClick}>
+        </button>
+        <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleLoClick}>
           Convert To LowerCase
-        </div>
+        </button>
       </div>
 
       <div
@@ -64,7 +64,7 @@ export default function TextBox(props) {
         <p>{0.008 * countWords()} Minutes Read</p>
         <p>{countWords()} Words</p>
         <h2>Preview</h2>
-        <p>{text.length > 0 ? text : "Enter some text to preview it here"}</p>
+        <p>{text.length > 0 ? text : "Nothing to preview"}</p>
       </div>
     </>
   );

@@ -27,13 +27,13 @@ function App() {
       setBtnTxt("Disable Dark Mode");
       document.body.style.backgroundColor = "#042743";
       showAlert("Dark mode enabled", "success");
-      document.title = "TextUtils-Dark Mode";
+      // document.title = "TextUtils-Dark Mode";
     } else {
       setMode("light");
       setBtnTxt("Enable Dark Mode");
       document.body.style.backgroundColor = "white";
       showAlert("Light mode enabled", "success");
-      document.title = "TextUtils-Dark Mode";
+      // document.title = "TextUtils-Dark Mode";
     }
   };
 
@@ -50,7 +50,7 @@ function App() {
               element={
                 <TextBox
                   showAlert={showAlert}
-                  heading="Enter text to analyze below"
+                  heading="Try textutils : lowercase to uppercase and uppercase to lowercase"
                   mode={mode}
                 />
               }
