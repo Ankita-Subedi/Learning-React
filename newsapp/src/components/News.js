@@ -278,16 +278,9 @@ export default class News extends Component {
       <div className="container my-3">
         <h2>NewsJunction-Top Headlines</h2>
         <div className="row">
+          {this.state.articles.map}
           <div className="col-md-4">
-            <NewsItem title="Yo title ho" description="Yo desc ho" imgURL="https://cdn.abcotvs.com/dip/images/14972168_061824-kabc-3pm-lausd-cell-phones-vid.jpg?w=1600" />
-          </div>
-
-          <div className="col-md-4">
-            <NewsItem title="Yo title ho" description="Yo desc ho" />
-          </div>
-
-          <div className="col-md-4">
-            <NewsItem title="Yo title ho" description="Yo desc ho" />
+            <NewsItem title="Yo title ho" description="Yo desc ho" imgURL="https://cdn.abcotvs.com/dip/images/14972168_061824-kabc-3pm-lausd-cell-phones-vid.jpg?w=1600" newsUrl="todo" />
           </div>
         </div>
       </div>
