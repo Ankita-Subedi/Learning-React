@@ -59,19 +59,73 @@ export default class News extends Component {
 
   constructor() {
     super();
-    console.log("Hello I am constructor.")
     this.state = {
-      articles: this.articles,
-      loading: false
+      articles: [],
+      loading: false,
+      page:1
     }
   }
 
   async componentDidMount(){
-        let url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=f113c98a610d4156bd5fdad4f11bed77";
-        let data = await fetch(url);
-        let parsedData = data.json;
-        console.log(parsedData);
-        this.setState({articles : parsedData.articles});
+        // let url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=f113c98a610d4156bd5fdad4f11bed77";
+        // let data = await fetch(url);
+        // let parsedData = data.json();
+        // // console.log(parsedData);
+        // this.setState({articles : parsedData.articles});
+
+          let url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=f113c98a610d4156bd5fdad4f11bed77&page=1";
+          this.setState({ loading: true });
+          try {
+            let data = await fetch(url);
+            if (!data.ok) {
+              throw new Error(`HTTP error! status: ${data.status}`);
+            }
+            let parsedData = await data.json();
+            this.setState({ articles: parsedData.articles, loading: false });
+          } catch (error) {
+            console.error("Error fetching data: ", error);
+            this.setState({ loading: false });
+          }  
+  }
+
+  handleNextClick = async()=>{
+    let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=f113c98a610d4156bd5fdad4f11bed77&page=${this.state.page + 1}`;
+          this.setState({ loading: true });
+          try {
+            let data = await fetch(url);
+            if (!data.ok) {
+              throw new Error(`HTTP error! status: ${data.status}`);
+            }
+            let parsedData = await data.json();
+            this.setState({ articles: parsedData.articles, loading: false });
+          } catch (error) {
+            console.error("Error fetching data: ", error);
+            this.setState({ loading: false });
+          }
+
+          this.setState({
+            page : this.state.page + 1,
+          })
+  }
+
+  handlePrevClick = async()=>{
+    let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=f113c98a610d4156bd5fdad4f11bed77&page=${this.state.page - 1}`;
+          this.setState({ loading: true });
+          try {
+            let data = await fetch(url);
+            if (!data.ok) {
+              throw new Error(`HTTP error! status: ${data.status}`);
+            }
+            let parsedData = await data.json();
+            this.setState({ articles: parsedData.articles, loading: false });
+          } catch (error) {
+            console.error("Error fetching data: ", error);
+            this.setState({ loading: false });
+          }
+
+          this.setState({
+            page : this.state.page - 1,
+          })
   }
 
   render() {
@@ -81,9 +135,13 @@ export default class News extends Component {
         <div className="row">
           {this.state.articles.map((element) => {
           return <div className="col-md-4" key={element.url}>
-              <NewsItem title={element.title.slice(0,45)} description={element.description.slice(0,88)} imgURL={element.urlToImage} newsUrl={element.url} />
+              <NewsItem title={element.title?element.title:""} description={element.description?element.description:""} imgURL={element.urlToImage} newsUrl={element.url} />
             </div>
           })}
+        </div>
+         <div className="container d-flex justify-content-between">
+        <button disabled={this.state.page<=1} type="button" onClick={this.handlePrevClick} class="btn btn-dark"> &larr; Previous</button>
+        <button type="button" onClick={this.handleNextClick} class="btn btn-dark">Next &rarr; </button>
         </div>
       </div>
     );
