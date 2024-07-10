@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import NewsItem from "./NewsItem";
+import Spinner from "./Spinner";
 
 export default class News extends Component {
   articles = [
@@ -67,13 +68,7 @@ export default class News extends Component {
   }
 
   async componentDidMount(){
-        // let url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=f113c98a610d4156bd5fdad4f11bed77";
-        // let data = await fetch(url);
-        // let parsedData = data.json();
-        // // console.log(parsedData);
-        // this.setState({articles : parsedData.articles});
-
-          let url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=f113c98a610d4156bd5fdad4f11bed77&page=1";
+          let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=f113c98a610d4156bd5fdad4f11bed77&page=1&pagesize=${this.props.pageSize}`;
           this.setState({ loading: true });
           try {
             let data = await fetch(url);
@@ -81,7 +76,7 @@ export default class News extends Component {
               throw new Error(`HTTP error! status: ${data.status}`);
             }
             let parsedData = await data.json();
-            this.setState({ articles: parsedData.articles, loading: false });
+            this.setState({ articles: parsedData.articles, totalResults: parsedData.totalResults, loading: false });
           } catch (error) {
             console.error("Error fetching data: ", error);
             this.setState({ loading: false });
@@ -89,27 +84,29 @@ export default class News extends Component {
   }
 
   handleNextClick = async()=>{
-    let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=f113c98a610d4156bd5fdad4f11bed77&page=${this.state.page + 1}`;
-          this.setState({ loading: true });
-          try {
-            let data = await fetch(url);
-            if (!data.ok) {
-              throw new Error(`HTTP error! status: ${data.status}`);
-            }
-            let parsedData = await data.json();
-            this.setState({ articles: parsedData.articles, loading: false });
-          } catch (error) {
-            console.error("Error fetching data: ", error);
-            this.setState({ loading: false });
-          }
+    if(!(this.state.page + 1 > Math.ceil(this.state.totalResults/this.props.pageSize))){
+      let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=f113c98a610d4156bd5fdad4f11bed77&page=${this.state.page + 1}&pagesize=${this.props.pageSize}`;
+      this.setState({ loading: true });
+      try {
+        let data = await fetch(url);
+        if (!data.ok) {
+          throw new Error(`HTTP error! status: ${data.status}`);
+        }
+        let parsedData = await data.json();
+        this.setState({ articles: parsedData.articles, loading: false });
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+        this.setState({ loading: false });
+      }
 
-          this.setState({
-            page : this.state.page + 1,
-          })
+      this.setState({
+        page : this.state.page + 1,
+      })
+    }
   }
 
   handlePrevClick = async()=>{
-    let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=f113c98a610d4156bd5fdad4f11bed77&page=${this.state.page - 1}`;
+    let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=f113c98a610d4156bd5fdad4f11bed77&page=${this.state.page - 1}&pagesize=${this.props.pageSize}`;
           this.setState({ loading: true });
           try {
             let data = await fetch(url);
@@ -131,17 +128,18 @@ export default class News extends Component {
   render() {
     return (
       <div className="container my-3">
-        <h2>NewsJunction-Top Headlines</h2>
+        <h2 className="text-center">NewsJunction-Top Headlines</h2>
+        {this.state.loading && <Spinner/>}
         <div className="row">
-          {this.state.articles.map((element) => {
-          return <div className="col-md-4" key={element.url}>
+          {!this.state.loading && this.state.articles.map((element, index) => {
+          return <div className="col-md-4" key={element.url + index}>
               <NewsItem title={element.title?element.title:""} description={element.description?element.description:""} imgURL={element.urlToImage} newsUrl={element.url} />
             </div>
           })}
         </div>
          <div className="container d-flex justify-content-between">
-        <button disabled={this.state.page<=1} type="button" onClick={this.handlePrevClick} class="btn btn-dark"> &larr; Previous</button>
-        <button type="button" onClick={this.handleNextClick} class="btn btn-dark">Next &rarr; </button>
+        <button disabled={this.state.page<=1} type="button" onClick={this.handlePrevClick} className="btn btn-dark"> &larr; Previous</button>
+        <button disabled={this.state.page + 1 > Math.ceil(this.state.totalResults/this.props.pageSize)} type="button" onClick={this.handleNextClick} className="btn btn-dark">Next &rarr; </button>
         </div>
       </div>
     );
