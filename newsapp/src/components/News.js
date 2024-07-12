@@ -114,30 +114,44 @@ export default class News extends Component {
     this.updateNews();
   }
 
+  fetchMoreData = async () =>{
+    this.setState({page:this.state.page + 1})
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=f113c98a610d4156bd5fdad4f11bed77&page=${this.state.page}&pagesize=${this.props.pageSize}`;
+    try {
+      let data = await fetch(url);
+      if (!data.ok) {
+        throw new Error(`HTTP error! status: ${data.status}`);
+      }
+      let parsedData = await data.json();
+      this.setState({ articles: this.state.articles.concat(parsedData.articles), totalResults: parsedData.totalResults, loading: false });
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+      this.setState({ loading: false });
+    }
+  }
+
   render() {
     return (
-      <div className="container my-3">
+      <>
         <h2 className="text-center" style={{ margin: "40px 0px" }}>NewsJunction-Top {this.props.category} Headlines</h2>
-        {/* {this.state.loading && <Spinner />} */}
+        {this.state.loading && <Spinner />}
         <InfiniteScroll
         dataLength={this.state.articles.length}
         next={this.fetchMoreData}
-        hasMore={this.state.arcticles.length !== this.state.totalResults}
+        hasMore={this.state.articles.length !== this.state.totalResults}
         loader={<Spinner/>}
         >
+          <div className="container my-3">
         <div className="row">
-          {!this.state.loading && this.state.articles.map((element, index) => {
+          {this.state.articles.map((element, index) => {
             return <div className="col-md-4" key={element.url + index}>
               <NewsItem title={element.title ? element.title : ""} description={element.description ? element.description : ""} imgURL={element.urlToImage} newsUrl={element.url} author={element.author ? element.author : "Unknown"} date={element.publishedAt} />
             </div>
           })}
         </div>
-        </InfiniteScroll>
-        <div className="container d-flex justify-content-between">
-          <button disabled={this.state.page <= 1} type="button" onClick={this.handlePrevClick} className="btn btn-dark"> &larr; Previous</button>
-          <button disabled={this.state.page + 1 > Math.ceil(this.state.totalResults / this.props.pageSize)} type="button" onClick={this.handleNextClick} className="btn btn-dark">Next &rarr; </button>
-        </div>
       </div>
+        </InfiniteScroll>
+        </>
     );
   }
 }
