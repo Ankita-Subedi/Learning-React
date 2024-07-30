@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+# TextUtils
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+TextUtils is a React-based utility application designed to help users manipulate text. It includes features such as text conversion to uppercase and lowercase, a summary of the text, and dark/light mode toggle.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Text Manipulation:** Convert text between uppercase and lowercase.
+- **Text Summary:** Display the number of words, characters, and estimated reading time.
+- **Dark/Light Mode:** Toggle between dark and light themes.
+- **Responsive Design:** Compatible with various screen sizes.
 
-### `npm start`
+## Components
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### App
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The main component that sets up routing and manages the application's global state, including theme mode and alerts.
 
-### `npm test`
+### About
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+A component that provides information about the application, using an accordion interface to detail text analysis, free usage, and browser compatibility.
 
-### `npm run build`
+### Alert
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Displays alert messages to the user, such as confirmations of text manipulations.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Navbar
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+A navigation bar that includes links to the Home and About pages, and a switch to toggle between dark and light modes.
 
-### `npm run eject`
+### TextBox
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+A text input area where users can enter text to be converted between uppercase and lowercase. It also shows a summary of the text including word count and estimated reading time.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Technologies Used
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **React** for building the user interface
+- **Bootstrap** for styling
+- **React Router** for navigation
