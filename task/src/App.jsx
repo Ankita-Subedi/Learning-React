@@ -5,6 +5,11 @@ import Service from "./section/Service";
 import Image from "./section/Image";
 import Video from "./section/Video";
 import Package from "./section/Package";
+import Subscribe from "./section/Subscribe";
+import Team from "./section/Team";
+import Blog from "./section/Blog";
+import Contact from "./section/Contact";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -28,6 +33,26 @@ function App() {
 
       <section id="packages">
         <Package />
+      </section>
+
+      <section id="subscribe">
+        <Subscribe />
+      </section>
+
+      <section id="team">
+        <Team />
+      </section>
+
+      <section id="blog">
+        <Blog />
+      </section>
+
+      <section id="blog">
+        <Contact />
+      </section>
+
+      <section id="b">
+        <Footer />
       </section>
     </>
   );

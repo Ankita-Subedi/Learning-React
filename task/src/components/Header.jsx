@@ -4,7 +4,6 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-
     <div className="container mx-auto px-4 py-4">
       {/* Header Wrapper */}
       <div className="flex items-center justify-between">
@@ -46,35 +45,53 @@ const Header = () => {
         {/* Desktop Navigation */}
         <div className="hidden md:flex md:">
           <ul className="flex text-lg space-x-6">
-            {["Home", "About Us", "Services", "Portfolio", "Gallery", "Packages", "Contact Us", "FAQ"].map(
-              (item) => (
-                <li
-                  key={item}
-                  className="border-b-2 border-transparent hover:border-pink-500 text-gray-700 hover:text-pink-500"
-                >
-                  <a href={`#${item.toLowerCase().replace(/\s+/g, "")}`}>{item}</a>
-                </li>
-              )
-            )}
+            {[
+              "Home",
+              "About Us",
+              "Services",
+              "Portfolio",
+              "Gallery",
+              "Packages",
+              "Contact Us",
+              "FAQ",
+            ].map((item) => (
+              <li
+                key={item}
+                className="border-b-2 border-transparent hover:border-pink-500 text-gray-700 hover:text-pink-500"
+              >
+                <a href={`#${item.toLowerCase().replace(/\s+/g, "")}`}>
+                  {item}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
 
       {/* Mobile Navigation */}
       <div
-        className={`${isOpen ? "block" : "hidden"} mt-4 md:hidden bg-white shadow-lg rounded-lg`}
+        className={`${
+          isOpen ? "block" : "hidden"
+        } mt-4 md:hidden bg-white shadow-lg rounded-lg`}
       >
         <ul className="flex flex-col text-lg space-y-4 p-4">
-          {["Home", "About Us", "Services", "Portfolio", "Gallery", "Packages", "Contact Us", "FAQ"].map(
-            (item) => (
-              <li
-                key={item}
-                className="border-b-2 border-transparent hover:border-pink-500 text-gray-700 hover:text-pink-500"
-              >
-                <a href={`#${item.toLowerCase().replace(/\s+/g, "")}`}>{item}</a>
-              </li>
-            )
-          )}
+          {[
+            "Home",
+            "About Us",
+            "Services",
+            "Portfolio",
+            "Gallery",
+            "Packages",
+            "Contact Us",
+            "FAQ",
+          ].map((item) => (
+            <li
+              key={item}
+              className="border-b-2 border-transparent hover:border-pink-500 text-gray-700 hover:text-pink-500"
+            >
+              <a href={`#${item.toLowerCase().replace(/\s+/g, "")}`}>{item}</a>
+            </li>
+          ))}
         </ul>
       </div>
     </div>
