@@ -59,12 +59,12 @@ const Package = () => {
   return (
     <div id="packages">
       <p className="text-2xl mb-2 md:mb-4 text-center">Our Packages</p>
-      <p className="text-xl text-center mb-6">
+      <p className="text-xl text-center ">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa impedit
         nisi numquam tempora, natus voluptate quisquam temporibus a animi velit!
       </p>
 
-      <div className="relative isolate bg-white px-6 py-12 sm:py-12 lg:px-8">
+      <div className="relative isolate bg-white px-6 pb-12 sm:py-12 lg:px-8 margin">
         <div
           aria-hidden="true"
           className="absolute inset-x-0 -top-3 -z-10 transform-gpu overflow-hidden px-36 blur-3xl"
