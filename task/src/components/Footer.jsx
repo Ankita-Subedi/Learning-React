@@ -112,7 +112,7 @@ const Footer = () => {
 
       <div className="bg-gray-900 text-white text-center py-4">
         <p className="text-sm">
-          © {new Date().getFullYear()} Your Company Name. All rights reserved.
+          © {new Date().getFullYear()} All rights reserved.
         </p>
       </div>
     </div>
